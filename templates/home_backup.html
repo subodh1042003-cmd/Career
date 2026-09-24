@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerDecode | AI Powered Career Guidance</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #102d63;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7.5%;
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #287cff, #8d35ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 29px;
+            font-weight: 900;
+            box-shadow: 0 5px 15px rgba(87,70,230,0.25);
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            background: linear-gradient(90deg, #123d86, #7438ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 11px;
+            color: #91a0b8;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 39px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #263653;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 24px 0 19px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #683ce9;
+        }
+
+        .nav-links a.active {
+            color: #7139e9;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: 13px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #7439ed;
+            border-radius: 10px;
+        }
+
+        .nav-button {
+            border: none;
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 12px 21px;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #267af5, #7c32eb);
+            box-shadow: 0 7px 18px rgba(100,66,230,0.28);
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 23px rgba(100,66,230,0.38);
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 365px;
+            padding: 42px 7.5% 0;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 75% 30%, #e9e8ff 0, transparent 27%),
+                linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left {
+            width: 48%;
+            padding-top: 4px;
+        }
+
+        .mini-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0eeff;
+            border: 1px solid #ddd9ff;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #6844db;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .mini-text span {
+            color: #7b42ec;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            line-height: 0.99;
+            letter-spacing: -2px;
+            color: #12366e;
+            font-weight: 850;
+        }
+
+        .hero-title .gradient {
+            display: inline-block;
+            background: linear-gradient(90deg, #583ce8, #8933ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-title .gradient::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -9px;
+            width: 100%;
+            height: 4px;
+            border-radius: 50%;
+            background: #7842e9;
+            transform: rotate(-1deg);
+        }
+
+        .hero-description {
+            margin-top: 22px;
+            max-width: 470px;
+            color: #657590;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 19px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            color: white;
+            background: linear-gradient(90deg, #267cf5, #7435e9);
+            box-shadow: 0 8px 18px rgba(76,78,225,0.25);
+        }
+
+        .secondary-btn {
+            color: #6838df;
+            border: 1.5px solid #713ce5;
+            background: white;
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-points {
+            display: flex;
+            gap: 29px;
+            margin-top: 21px;
+        }
+
+        .hero-point {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #71809a;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .point-icon {
+            font-size: 19px;
+        }
+
+
+        /* ================= STUDENT ILLUSTRATION ================= */
+
+        .hero-right {
+            width: 48%;
+            height: 320px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .blob {
+            position: absolute;
+            width: 310px;
+            height: 270px;
+            right: 110px;
+            top: 20px;
+            border-radius: 48% 52% 45% 55%;
+            background: linear-gradient(135deg, #e2dcff, #d9f1ff);
+        }
+
+        .circle-blob {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            right: 20px;
+            top: 40px;
+            border-radius: 50%;
+            background: #e7e2ff;
+            opacity: 0.8;
+        }
+
+        .student {
+            position: relative;
+            width: 250px;
+            height: 285px;
+            z-index: 3;
+        }
+
+        .head {
+            position: absolute;
+            top: 27px;
+            left: 77px;
+            width: 100px;
+            height: 108px;
+            border-radius: 48% 48% 45% 45%;
+            background: #f3b68d;
+            z-index: 4;
+        }
+
+        .hair {
+            position: absolute;
+            top: 12px;
+            left: 65px;
+            width: 124px;
+            height: 75px;
+            border-radius: 65% 50% 45% 35%;
+            background: #2c2735;
+            z-index: 5;
+            transform: rotate(-5deg);
+        }
+
+        .hair::after {
+            content: "";
+            position: absolute;
+            width: 45px;
+            height: 35px;
+            left: 3px;
+            top: 38px;
+            background: #2c2735;
+            border-radius: 50%;
+            transform: rotate(20deg);
+        }
+
+        .ear {
+            position: absolute;
+            width: 17px;
+            height: 25px;
+            background: #f3b68d;
+            border-radius: 50%;
+            top: 74px;
+            z-index: 2;
+        }
+
+        .ear.left {
+            left: 67px;
+        }
+
+        .ear.right {
+            right: 66px;
+        }
+
+        .eye {
+            position: absolute;
+            width: 8px;
+            height: 10px;
+            background: #27202a;
+            border-radius: 50%;
+            top: 82px;
+            z-index: 6;
+        }
+
+        .eye.left {
+            left: 96px;
+        }
+
+        .eye.right {
+            left: 137px;
+        }
+
+        .nose {
+            position: absolute;
+            top: 93px;
+            left: 119px;
+            width: 13px;
+            height: 9px;
+            border-bottom: 2px solid #b86d54;
+            border-radius: 50%;
+            z-index: 6;
+        }
+
+        .smile {
+            position: absolute;
+            top: 108px;
+            left: 108px;
+            width: 29px;
+            height: 12px;
+            border-bottom: 3px solid #8c3f4e;
+            border-radius: 50%;
+            z-index: 6;
+        }
+
+        .neck {
+            position: absolute;
+            top: 124px;
+            left: 103px;
+            width: 47px;
+            height: 36px;
+            background: #e8a77f;
+            z-index: 2;
+        }
+
+        .body {
+            position: absolute;
+            top: 142px;
+            left: 49px;
+            width: 160px;
+            height: 143px;
+            background: linear-gradient(135deg, #246fd8, #1457a9);
+            border-radius: 58px 58px 10px 10px;
+            z-index: 1;
+        }
+
+        .hood {
+            position: absolute;
+            top: 141px;
+            left: 62px;
+            width: 133px;
+            height: 82px;
+            border: 11px solid #1e63c4;
+            border-bottom: none;
+            border-radius: 65px 65px 0 0;
+            z-index: 4;
+        }
+
+        .shirt {
+            position: absolute;
+            top: 180px;
+            left: 80px;
+            width: 100px;
+            height: 95px;
+            border-radius: 15px;
+            background: #235da8;
+            z-index: 3;
+        }
+
+        .book {
+            position: absolute;
+            top: 184px;
+            left: 73px;
+            width: 112px;
+            height: 92px;
+            background: linear-gradient(135deg, #233f87, #1b5da8);
+            border-radius: 4px;
+            transform: rotate(-3deg);
+            z-index: 6;
+            box-shadow: 5px 6px 0 rgba(17,49,100,0.2);
+        }
+
+        .book::before {
+            content: "Better\A Career\A Bigger\A Dreams";
+            white-space: pre;
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            color: white;
+            font-family: Georgia, serif;
+            font-size: 11px;
+            line-height: 1.2;
+            border-bottom: 1px solid white;
+        }
+
+        .arm {
+            position: absolute;
+            width: 45px;
+            height: 105px;
+            background: #2772d2;
+            border-radius: 30px;
+            top: 165px;
+            z-index: 7;
+        }
+
+        .arm.left {
+            left: 37px;
+            transform: rotate(18deg);
+        }
+
+        .arm.right {
+            right: 35px;
+            transform: rotate(-18deg);
+        }
+
+        .paper-plane {
+            position: absolute;
+            left: 7%;
+            top: 60px;
+            font-size: 34px;
+            color: #8d55ef;
+            transform: rotate(-20deg);
+        }
+
+        .skills-note {
+            position: absolute;
+            right: 0;
+            top: 27px;
+            width: 160px;
+            color: #172c59;
+            font-family: "Comic Sans MS", cursive;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.25;
+            transform: rotate(-5deg);
+            z-index: 5;
+        }
+
+        .skills-note::after {
+            content: "♡";
+            font-size: 22px;
+            margin-left: 5px;
+        }
+
+
+        /* ================= SIDE FEATURES ================= */
+
+        .side-features {
+            position: absolute;
+            right: 0;
+            top: 112px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 7;
+        }
+
+        .side-feature {
+            width: 180px;
+            height: 38px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.94);
+            box-shadow: 0 5px 15px rgba(65,80,130,0.09);
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 6px 13px;
+            color: #27365a;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .side-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .purple {
+            background: #eee8ff;
+        }
+
+        .green {
+            background: #e4f9e7;
+        }
+
+        .orange {
+            background: #fff0df;
+        }
+
+        .pink {
+            background: #ffe4f0;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 23px 7.5% 70px;
+            text-align: center;
+            position: relative;
+            background: white;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #f2efff;
+            color: #7043dc;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            margin-top: 8px;
+            font-size: 25px;
+            font-weight: 800;
+            color: #16396f;
+        }
+
+        .section-title span {
+            color: #6c3bea;
+        }
+
+        .section-subtitle {
+            margin-top: 5px;
+            color: #8996ac;
+            font-size: 11px;
+        }
+
+        .feature-grid {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            text-align: left;
+        }
+
+        .feature-card {
+            min-height: 123px;
+            border-radius: 16px;
+            padding: 17px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(75,85,130,0.13);
+        }
+
+        .feature-card:nth-child(1) {
+            background: linear-gradient(135deg, #f4f0ff, #eeeaff);
+        }
+
+        .feature-card:nth-child(2) {
+            background: linear-gradient(135deg, #edfff1, #e4fae9);
+        }
+
+        .feature-card:nth-child(3) {
+            background: linear-gradient(135deg, #eef8ff, #e9f5ff);
+        }
+
+        .feature-card:nth-child(4) {
+            background: linear-gradient(135deg, #fff5ef, #fff0e9);
+        }
+
+        .feature-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card:nth-child(1) .feature-icon {
+            background: #dfd5ff;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: #c9f4d2;
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: #cceaff;
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: #ffd8c8;
+        }
+
+        .feature-card h3 {
+            font-size: 13px;
+            color: #21365e;
+            margin-bottom: 7px;
+        }
+
+        .feature-card p {
+            color: #76839b;
+            font-size: 10px;
+            line-height: 1.45;
+            max-width: 190px;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 13px;
+            left: 17px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6840d9;
+            font-size: 13px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+        }
+
+        .leaf {
+            position: absolute;
+            right: -10px;
+            bottom: -12px;
+            font-size: 45px;
+            opacity: 0.25;
+        }
+
+
+        /* ================= BOTTOM WAVE ================= */
+
+        .bottom-wave {
+            height: 90px;
+            margin-top: -20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, white, #f1f0ff);
+        }
+
+        .bottom-wave::before {
+            content: "";
+            position: absolute;
+            width: 120%;
+            height: 100px;
+            left: -10%;
+            top: -50px;
+            border-radius: 50%;
+            background: #e9e6ff;
+        }
+
+        .future-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding-top: 48px;
+            color: #263d67;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 35px 6% 30px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-left,
+            .hero-right {
+                width: 100%;
+            }
+
+            .hero-left {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons,
+            .hero-points {
+                justify-content: center;
+            }
+
+            .hero-right {
+                margin-top: 25px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .side-features {
+                right: 2%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .brand {
+                font-size: 19px;
+            }
+
+            .tagline {
+                font-size: 9px;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 38px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-points {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .hero-right {
+                transform: scale(0.8);
+                margin-top: 0;
+            }
+
+            .side-features {
+                display: none;
+            }
+
+            .skills-note {
+                right: 5%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo">C</div>
+
+        <div>
+            <div class="brand">CareerDecode</div>
+            <div class="tagline">AI Powered Career Guidance</div>
+        </div>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="/" class="active">Home</a>
+
+        <a href="/#features">Features</a>
+
+        <a href="/#how-it-works">How It Works</a>
+
+        <a href="{% url 'about' %}">About</a>
+
+        <a href="{% url 'contact' %}">Contact</a>
+
+    </nav>
+
+
+    <a href="{% url 'predict' %}" class="nav-button">
+        ✨ Get Started →
+    </a>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <!-- LEFT -->
+
+        <div class="hero-left">
+
+            <div class="mini-text">
+                ✨ Your Future
+                <span>•</span>
+                Our AI
+                <span>•</span>
+                Better Decisions
+            </div>
+
+
+            <h1 class="hero-title">
+                Discover Your<br>
+                <span class="gradient">Dream Career</span>
+            </h1>
+
+
+            <p class="hero-description">
+                Get AI-powered career guidance, analyze your skills,
+                and find the best career path for a brighter future.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'predict' %}" class="primary-btn">
+                    ✨ Get Started →
+                </a>
+
+                <a href="#features" class="secondary-btn">
+                    Explore Features →
+                </a>
+
+            </div>
+
+
+            <div class="hero-points">
+
+                <div class="hero-point">
+                    <span class="point-icon">⚡</span>
+                    Fast & Accurate
+                </div>
+
+                <div class="hero-point">
+                    <span class="point-icon">🛡️</span>
+                    AI Powered
+                </div>
+
+                <div class="hero-point">
+                    <span class="point-icon">♥</span>
+                    100% Free
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+            <div class="blob"></div>
+
+            <div class="circle-blob"></div>
+
+            <div class="paper-plane">➤</div>
+
+
+            <div class="skills-note">
+                Your Skills<br>
+                Your Strength<br>
+                Your Future
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="student">
+
+                <div class="hair"></div>
+
+                <div class="head"></div>
+
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+
+                <div class="nose"></div>
+                <div class="smile"></div>
+
+                <div class="neck"></div>
+
+                <div class="body"></div>
+
+                <div class="hood"></div>
+
+                <div class="shirt"></div>
+
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+
+                <div class="book"></div>
+
+            </div>
+
+
+
+            <!-- SIDE FEATURES -->
+
+            <div class="side-features">
+
+                <div class="side-feature">
+                    <div class="side-icon purple">🧠</div>
+                    AI Analysis
+                </div>
+
+                <div class="side-feature">
+                    <div class="side-icon green">🎯</div>
+                    Career Prediction
+                </div>
+
+                <div class="side-feature">
+                    <div class="side-icon orange">📊</div>
+                    Personalized Insights
+                </div>
+
+                <div class="side-feature">
+                    <div class="side-icon pink">★</div>
+                    Skill Gap Detection
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features" id="features">
+
+    <div class="section-label">
+        OUR FEATURES
+    </div>
+
+
+    <h2 class="section-title">
+        Everything You Need for a
+        <span>Better Career</span>
+    </h2>
+
+
+    <p class="section-subtitle">
+        Smart tools. Personalized insights. A brighter future.
+    </p>
+
+
+
+    <div class="feature-grid">
+
+
+        <!-- CARD 1 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                AI Resume Analysis
+            </h3>
+
+            <p>
+                Get detailed insights about your skills,
+                experience, strengths and areas for improvement.
+            </p>
+
+            <div class="card-arrow">
+                →
+            </div>
+
+            <div class="leaf">
+                🌿
+            </div>
+
+        </div>
+
+
+
+        <!-- CARD 2 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>
+                Skill Gap Detection
+            </h3>
+
+            <p>
+                Know what you're missing
+                and what to learn next.
+            </p>
+
+            <div class="card-arrow">
+                →
+            </div>
+
+            <div class="leaf">
+                🌿
+            </div>
+
+        </div>
+
+
+
+        <!-- CARD 3 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🚀
+            </div>
+
+            <h3>
+                Career Prediction
+            </h3>
+
+            <p>
+                Find the best career paths
+                for your profile.
+            </p>
+
+            <div class="card-arrow">
+                →
+            </div>
+
+            <div class="leaf">
+                🌿
+            </div>
+
+        </div>
+
+
+
+        <!-- CARD 4 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Personalized Insights
+            </h3>
+
+            <p>
+                Get actionable tips to boost
+                your career growth.
+            </p>
+
+            <div class="card-arrow">
+                →
+            </div>
+
+            <div class="leaf">
+                🌿
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section id="how-it-works"
+         style="
+         padding:70px 7%;
+         background:#f8f9ff;
+         text-align:center;
+         ">
+
+    <div class="section-label">
+        HOW IT WORKS
+    </div>
+
+    <h2 class="section-title">
+        Your Career Journey in
+        <span>3 Simple Steps</span>
+    </h2>
+
+    <p class="section-subtitle">
+        Upload. Analyze. Discover your future.
+    </p>
+
+
+    <div style="
+        max-width:1000px;
+        margin:35px auto 0;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:25px;
+    ">
+
+
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 8px 25px rgba(40,50,100,.07);
+        ">
+
+            <div style="
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                background:#e8e0ff;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                margin:auto;
+                font-size:22px;
+            ">
+                📄
+            </div>
+
+            <h3 style="
+                margin-top:15px;
+                color:#233a67;
+                font-size:16px;
+            ">
+                1. Upload Resume
+            </h3>
+
+            <p style="
+                margin-top:8px;
+                color:#7b879d;
+                font-size:12px;
+                line-height:1.5;
+            ">
+                Upload your PDF or DOCX resume.
+            </p>
+
+        </div>
+
+
+
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 8px 25px rgba(40,50,100,.07);
+        ">
+
+            <div style="
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                background:#ddf6e4;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                margin:auto;
+                font-size:22px;
+            ">
+                🤖
+            </div>
+
+            <h3 style="
+                margin-top:15px;
+                color:#233a67;
+                font-size:16px;
+            ">
+                2. AI Analysis
+            </h3>
+
+            <p style="
+                margin-top:8px;
+                color:#7b879d;
+                font-size:12px;
+                line-height:1.5;
+            ">
+                Our AI analyzes your skills and resume.
+            </p>
+
+        </div>
+
+
+
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 8px 25px rgba(40,50,100,.07);
+        ">
+
+            <div style="
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                background:#dff1ff;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                margin:auto;
+                font-size:22px;
+            ">
+                🎯
+            </div>
+
+            <h3 style="
+                margin-top:15px;
+                color:#233a67;
+                font-size:16px;
+            ">
+                3. Get Career Path
+            </h3>
+
+            <p style="
+                margin-top:8px;
+                color:#7b879d;
+                font-size:12px;
+                line-height:1.5;
+            ">
+                Discover suitable career opportunities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section style="
+    padding:55px 7%;
+    text-align:center;
+    background:linear-gradient(135deg,#f1edff,#edf7ff);
+">
+
+    <h2 style="
+        color:#18396d;
+        font-size:27px;
+        margin-bottom:10px;
+    ">
+        Ready to Discover Your Dream Career?
+    </h2>
+
+    <p style="
+        color:#71809a;
+        font-size:13px;
+        margin-bottom:20px;
+    ">
+        Let AI help you find the right direction for your future.
+    </p>
+
+    <a href="{% url 'predict' %}"
+       class="primary-btn"
+       style="display:inline-flex;">
+        ✨ Analyze My Resume →
+    </a>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer style="
+    background:#102d63;
+    color:white;
+    text-align:center;
+    padding:22px;
+    font-size:11px;
+">
+
+    <div style="
+        font-size:18px;
+        font-weight:800;
+        margin-bottom:6px;
+    ">
+        CareerDecode
+    </div>
+
+    <div style="opacity:.7;">
+        AI Powered Career Guidance
+    </div>
+
+    <div style="
+        margin-top:12px;
+        opacity:.55;
+    ">
+        © 2026 CareerDecode. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+</body>
+</html>

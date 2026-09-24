@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerDecode | Resume Intelligence</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 20%,#eaf2ff 0,transparent 30%),
+        radial-gradient(circle at 90% 70%,#eeeaff 0,transparent 32%),
+        #f8faff;
+    color:#101828;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:92%;
+    max-width:1180px;
+    height:70px;
+    margin:22px auto 0;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 22px;
+
+    background:rgba(255,255,255,.88);
+    border:1px solid #edf0f6;
+    border-radius:18px;
+
+    box-shadow:0 10px 35px rgba(16,24,40,.07);
+    backdrop-filter:blur(20px);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:-.6px;
+}
+
+.logo-box{
+    width:39px;
+    height:39px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    color:white;
+    font-weight:900;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 8px 20px rgba(79,70,229,.25);
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.team{
+    text-decoration:none;
+    color:#344054;
+    font-size:12px;
+    font-weight:700;
+
+    padding:10px 15px;
+    border-radius:10px;
+
+    transition:.2s;
+}
+
+.team:hover{
+    background:#f2f4f7;
+    color:#2563eb;
+}
+
+/* MArtificial IntelligenceN */
+
+.main{
+    width:92%;
+    max-width:1000px;
+    margin:0 auto;
+
+    padding:82px 0 70px;
+
+    text-align:center;
+}
+
+/* BADGE */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:#eef4ff;
+    border:1px solid #dbe7ff;
+
+    color:#2563eb;
+
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.badge svg{
+    width:14px;
+    height:14px;
+}
+
+/* HEADING */
+
+h1{
+    margin-top:24px;
+
+    font-size:clamp(45px,7vw,72px);
+    line-height:1.02;
+
+    letter-spacing:-4px;
+    font-weight:900;
+
+    color:#101828;
+}
+
+.heading-gradient{
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+/* DESCRIPTION */
+
+.description{
+    max-width:610px;
+    margin:22px auto 0;
+
+    color:#667085;
+
+    font-size:14px;
+    line-height:1.75;
+}
+
+/* UPLOAD CARD */
+
+.upload-card{
+    width:100%;
+    max-width:720px;
+
+    margin:42px auto 0;
+
+    padding:25px;
+
+    background:white;
+
+    border:1px solid #e7ebf3;
+    border-radius:24px;
+
+    text-align:left;
+
+    box-shadow:
+        0 25px 60px rgba(16,24,40,.09),
+        0 5px 15px rgba(16,24,40,.04);
+}
+
+/* CARD TITLE */
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    margin-bottom:19px;
+}
+
+.title-icon{
+    width:47px;
+    height:47px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:#eef4ff;
+    color:#2563eb;
+}
+
+.title-icon svg{
+    width:24px;
+    height:24px;
+}
+
+.title-text h2{
+    font-size:16px;
+    font-weight:850;
+}
+
+.title-text p{
+    margin-top:3px;
+
+    color:#98a2b3;
+    font-size:10px;
+}
+
+/* DROP AREA */
+
+.drop-area{
+    min-height:245px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:2px dashed #b8c7e8;
+    border-radius:18px;
+
+    background:#fbfcff;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.drop-area:hover,
+.drop-area.drag{
+    border-color:#2563eb;
+    background:#f7f9ff;
+}
+
+/* UPLOAD ICON */
+
+.upload-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:23px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 14px 30px rgba(79,70,229,.25),
+        0 0 0 8px rgba(79,70,229,.06);
+}
+
+.upload-icon svg{
+    width:38px;
+    height:38px;
+}
+
+/* TEXT */
+
+.drop-title{
+    text-align:center;
+
+    font-size:14px;
+    font-weight:800;
+
+    color:#172033;
+}
+
+.drop-title span{
+    color:#2563eb;
+}
+
+.drop-subtitle{
+    margin-top:8px;
+
+    text-align:center;
+
+    color:#98a2b3;
+    font-size:10px;
+}
+
+/* FILE TYPES */
+
+.file-types{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:17px;
+}
+
+.file{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:7px 11px;
+
+    border:1px solid #e4e7ec;
+    border-radius:8px;
+
+    background:white;
+
+    color:#667085;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+.pdf{
+    color:#ef4444;
+    font-weight:900;
+}
+
+.docx{
+    color:#2563eb;
+    font-weight:900;
+}
+
+/* SELECTED FILE */
+
+#file-name{
+    display:none;
+
+    width:max-content;
+    max-width:90%;
+
+    margin:14px auto 0;
+
+    padding:8px 12px;
+
+    background:#ecfdf3;
+    border:1px solid #bbf7d0;
+    border-radius:8px;
+
+    color:#15803d;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+#file-name.show{
+    display:block;
+}
+
+/* BUTTON */
+
+.analyze-btn{
+    width:100%;
+
+    margin-top:15px;
+    padding:15px;
+
+    border:0;
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+
+    color:white;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    );
+
+    font-size:12px;
+    font-weight:850;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(79,70,229,.23);
+
+    transition:.2s;
+}
+
+.analyze-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(79,70,229,.30);
+}
+
+/* SECURITY */
+
+.security{
+    text-align:center;
+
+    margin-top:12px;
+
+    color:#98a2b3;
+    font-size:9px;
+}
+
+.security span{
+    color:#16a34a;
+    font-weight:900;
+}
+
+/* FOOTER */
+
+footer{
+    padding:22px;
+
+    text-align:center;
+
+    color:#98a2b3;
+    font-size:9px;
+}
+
+footer strong{
+    color:#667085;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .navbar{
+        width:94%;
+        margin-top:12px;
+    }
+
+    .team{
+        font-size:10px;
+    }
+
+    .main{
+        width:94%;
+        padding-top:55px;
+    }
+
+    h1{
+        font-size:43px;
+        letter-spacing:-2.5px;
+    }
+
+    .description{
+        font-size:13px;
+    }
+
+    .upload-card{
+        padding:17px;
+        margin-top:32px;
+    }
+
+    .drop-area{
+        min-height:225px;
+    }
+
+    .file-types{
+        flex-wrap:wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            C
+        </div>
+
+        Career<span>Decode</span>
+
+    </div>
+
+    <a href="/team/" class="team">
+        Our Team →
+    </a>
+
+</nav>
+
+
+<!-- MArtificial IntelligenceN -->
+
+<main class="main">
+
+    <div class="badge">
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2">
+
+            <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/>
+
+        </svg>
+
+        Resume Intelligence
+
+    </div>
+
+
+    <h1>
+
+        Understand your resume.<br>
+
+        <span class="heading-gradient">
+            Discover your career.
+        </span>
+
+    </h1>
+
+
+    <p class="description">
+
+        Upload your resume to analyze your skills and discover
+        career paths that best match your professional profile.
+
+    </p>
+
+
+    <!-- UPLOAD CARD -->
+
+    <section class="upload-card">
+
+        <div class="card-title">
+
+            <div class="title-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+
+                </svg>
+
+            </div>
+
+            <div class="title-text">
+
+                <h2>
+                    Analyze your resume
+                </h2>
+
+                <p>
+                    Upload your existing resume to get started.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form method="POST" action="{% url 'analyze_resume' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+<label
+                for="resume-file"
+                class="drop-area"
+                id="drop-area"
+            >
+
+                <div>
+
+                    <!-- UPLOAD SVG ICON -->
+
+                    <div class="upload-icon">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 16V4"/>
+                            <path d="M7 9l5-5 5 5"/>
+                            <path d="M5 20h14"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="drop-title">
+
+                        Drop your resume here or
+                        <span>browse files</span>
+
+                    </div>
+
+
+                    <div class="drop-subtitle">
+
+                        PDF or DOCX · Maximum recommended size 10 MB
+
+                    </div>
+
+
+                    <div class="file-types">
+
+                        <div class="file">
+
+                            <span class="pdf">
+                                PDF
+                            </span>
+
+                            Portable Document
+
+                        </div>
+
+
+                        <div class="file">
+
+                            <span class="docx">
+                                DOCX
+                            </span>
+
+                            Microsoft Word
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="file-name"></div>
+
+                </div>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="resume-file"
+                name="resume"
+                accept=".pdf,.docx"
+                hidden
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="analyze-btn"
+            >
+
+                <svg width="17"
+                     height="17"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <path d="M12 16V4"/>
+                    <path d="M7 9l5-5 5 5"/>
+                    <path d="M5 20h14"/>
+
+                </svg>
+
+                Analyze Resume →
+
+            </button>
+
+        </form>
+
+
+        <div class="security">
+
+            <span>✓</span>
+            Resume is processed securely for analysis
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 <strong>CareerDecode</strong>
+    · Resume Analysis & Career Recommendation System
+
+</footer>
+
+
+<script>
+
+const input = document.getElementById("resume-file");
+const dropArea = document.getElementById("drop-area");
+const fileName = document.getElementById("file-name");
+
+
+input.addEventListener("change", function(){
+
+    if(this.files.length){
+        showFile(this.files[0]);
+    }
+
+});
+
+
+dropArea.addEventListener("dragover", function(e){
+
+    e.preventDefault();
+
+    dropArea.classList.add("drag");
+
+});
+
+
+dropArea.addEventListener("dragleave", function(){
+
+    dropArea.classList.remove("drag");
+
+});
+
+
+dropArea.addEventListener("drop", function(e){
+
+    e.preventDefault();
+
+    dropArea.classList.remove("drag");
+
+    if(e.dataTransfer.files.length){
+
+        input.files = e.dataTransfer.files;
+
+        showFile(e.dataTransfer.files[0]);
+
+    }
+
+});
+
+
+function showFile(file){
+
+    const ext =
+        file.name.toLowerCase().split(".").pop();
+
+
+    if(ext !== "pdf" && ext !== "docx"){
+
+        fileName.textContent =
+            "Please select a PDF or DOCX file.";
+
+        fileName.classList.add("show");
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    if(file.size > 10 * 1024 * 1024){
+
+        fileName.textContent =
+            "File size must be below 10 MB.";
+
+        fileName.classList.add("show");
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    fileName.textContent =
+        "✓ " + file.name;
+
+    fileName.classList.add("show");
+
+}
+
+</script>
+
+</body>
+</html>

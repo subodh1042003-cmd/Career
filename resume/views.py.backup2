@@ -1,0 +1,369 @@
+import os
+import joblib
+import pymupdf
+
+from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
+from .models import TeamMember
+
+from ml_model.skills import extract_skills
+from ml_model.skill_gap import analyze_skill_gap
+from ml_model.career_recommendation import recommend_careers
+
+
+# ==================================================
+# BASE PATH
+# ==================================================
+
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
+
+
+# ==================================================
+# LOAD AI MODEL
+# ==================================================
+
+MODEL_PATH = os.path.join(
+    BASE_DIR,
+    "ml_model",
+    "career_model.pkl"
+)
+
+VECTORIZER_PATH = os.path.join(
+    BASE_DIR,
+    "ml_model",
+    "tfidf_vectorizer.pkl"
+)
+
+
+model = joblib.load(
+    MODEL_PATH
+)
+
+vectorizer = joblib.load(
+    VECTORIZER_PATH
+)
+
+
+# ==================================================
+# HOME PAGE
+# ==================================================
+
+def home(request):
+
+    return render(
+        request,
+        "predict.html"
+    )
+
+
+# ==================================================
+# RESUME UPLOAD & AI ANALYSIS
+# ==================================================
+
+def analyze_resume(request):
+
+    if request.method == "POST":
+
+        uploaded_file = request.FILES.get(
+            "resume"
+        )
+
+
+        # ------------------------------------------
+        # Check file
+        # ------------------------------------------
+
+        if not uploaded_file:
+
+            return render(
+                request,
+                "home.html",
+                {
+                    "error":
+                    "Please upload a resume."
+                }
+            )
+
+
+        # ------------------------------------------
+        # Check extension
+        # ------------------------------------------
+
+        filename = uploaded_file.name
+
+        extension = os.path.splitext(
+            filename
+        )[1].lower()
+
+
+        if extension not in [
+            ".pdf",
+            ".docx"
+        ]:
+
+            return render(
+                request,
+                "home.html",
+                {
+                    "error":
+                    "Only PDF and DOCX files are supported."
+                }
+            )
+
+
+        # ------------------------------------------
+        # Save uploaded file
+        # ------------------------------------------
+
+        fs = FileSystemStorage(
+            location=os.path.join(
+                BASE_DIR,
+                "media"
+            )
+        )
+
+
+        saved_filename = fs.save(
+            filename,
+            uploaded_file
+        )
+
+
+        file_path = fs.path(
+            saved_filename
+        )
+
+
+        # ------------------------------------------
+        # Extract text
+        # ------------------------------------------
+
+        resume_text = ""
+
+
+        if extension == ".pdf":
+
+            try:
+
+                document = pymupdf.open(
+                    file_path
+                )
+
+
+                for page in document:
+
+                    resume_text += (
+                        page.get_text()
+                        + "\n"
+                    )
+
+
+                document.close()
+
+
+            except Exception as e:
+
+                return render(
+                    request,
+                    "home.html",
+                    {
+                        "error":
+                        f"PDF reading error: {e}"
+                    }
+                )
+
+
+        elif extension == ".docx":
+
+            try:
+
+                from docx import Document
+
+
+                document = Document(
+                    file_path
+                )
+
+
+                for paragraph in document.paragraphs:
+
+                    resume_text += (
+                        paragraph.text
+                        + "\n"
+                    )
+
+
+            except Exception as e:
+
+                return render(
+                    request,
+                    "home.html",
+                    {
+                        "error":
+                        f"DOCX reading error: {e}"
+                    }
+                )
+
+
+        # ------------------------------------------
+        # Check extracted text
+        # ------------------------------------------
+
+        resume_text = resume_text.strip()
+
+
+        if not resume_text:
+
+            return render(
+                request,
+                "home.html",
+                {
+                    "error":
+                    "Could not extract text from resume."
+                }
+            )
+
+
+        # ==================================================
+        # AI CAREER PREDICTION
+        # ==================================================
+
+        resume_vector = vectorizer.transform(
+            [resume_text]
+        )
+
+
+        predicted_career = model.predict(
+            resume_vector
+        )[0]
+
+
+        # ==================================================
+        # SKILLS EXTRACTION
+        # ==================================================
+
+        detected_skills = extract_skills(
+            resume_text
+        )
+
+
+        # ==================================================
+        # SKILL GAP ANALYSIS
+        # ==================================================
+
+        skill_gap = analyze_skill_gap(
+
+            predicted_career,
+
+            detected_skills
+
+        )
+
+
+        # ==================================================
+        # TOP 3 CAREER RECOMMENDATION
+        # ==================================================
+
+        recommendations = recommend_careers(
+            resume_text
+        )
+
+
+        # ==================================================
+        # RESUME SCORE
+        # ==================================================
+
+        skill_score = skill_gap[
+            "match_percentage"
+        ]
+
+
+        # Simple resume score
+        resume_score = round(
+            skill_score,
+            2
+        )
+
+
+        # ==================================================
+        # RESULT
+        # ==================================================
+
+        context = {
+
+            "predicted_career":
+                predicted_career,
+
+            "detected_skills":
+                detected_skills,
+
+            "required_skills":
+                skill_gap[
+                    "required_skills"
+                ],
+
+            "matched_skills":
+                skill_gap[
+                    "matched_skills"
+                ],
+
+            "missing_skills":
+                skill_gap[
+                    "missing_skills"
+                ],
+
+            "skill_match":
+                skill_gap[
+                    "match_percentage"
+                ],
+
+            "recommendations":
+                recommendations,
+
+            "resume_score":
+                resume_score,
+
+            "resume_text":
+                resume_text
+
+        }
+
+
+        return render(
+            request,
+            "result.html",
+            context
+        )
+
+
+    # ==================================================
+    # GET REQUEST
+    # ==================================================
+
+    return render(
+        request,
+        "predict.html"
+    )
+def team(request):
+    members = TeamMember.objects.filter(is_active=True)
+    return render(request, "team.html", {"members": members})
+
+
+def about(request):
+    return render(request, "about.html")
+
+
+def analysis(request):
+    return render(request, "analysis.html")
+
+
+def predict(request):
+    return render(request, "predict.html")
+
+
+def contact(request):
+    return render(request, "contact.html")

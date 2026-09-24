@@ -1,0 +1,1156 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerDecode | Career Intelligence Report</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --navy:#07111f;
+    --navy2:#0d1930;
+    --blue:#2563eb;
+    --purple:#6d4aff;
+    --text:#111827;
+    --muted:#667085;
+    --border:#e6eaf0;
+    --bg:#f5f7fb;
+    --white:#ffffff;
+    --green:#079455;
+    --orange:#ea580c;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 0%,rgba(37,99,235,.07),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(109,74,255,.07),transparent 28%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.5;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:76px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#2563eb,#7048ff);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    font-weight:900;
+    box-shadow:0 8px 20px rgba(37,99,235,.22);
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#475467;
+    font-size:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+.report-pill{
+    background:#eef4ff;
+    color:#2563eb;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:800;
+}
+
+/* MArtificial IntelligenceN */
+
+.container{
+    max-width:1180px;
+    margin:auto;
+    padding:58px 22px 80px;
+}
+
+/* HEADER */
+
+.header{
+    margin-bottom:32px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:#eaf2ff;
+    color:#2563eb;
+    border:1px solid #d9e7ff;
+    border-radius:30px;
+    padding:7px 12px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.badge::before{
+    content:"";
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+h1{
+    margin-top:14px;
+    font-size:48px;
+    line-height:1.05;
+    letter-spacing:-2.5px;
+    font-weight:900;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#2563eb,#7048ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.subtitle{
+    max-width:760px;
+    color:#667085;
+    font-size:14px;
+    margin-top:12px;
+    line-height:1.75;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 85% 20%,rgba(79,70,229,.35),transparent 27%),
+        radial-gradient(circle at 10% 100%,rgba(37,99,235,.22),transparent 30%),
+        linear-gradient(135deg,#07111f,#0d1930);
+    color:white;
+    border-radius:24px;
+    padding:38px;
+    display:grid;
+    grid-template-columns:1fr 220px;
+    align-items:center;
+    gap:30px;
+    box-shadow:0 25px 60px rgba(7,17,31,.18);
+    margin-bottom:22px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    right:-70px;
+    bottom:-90px;
+}
+
+.hero-label{
+    color:#9eb3d3;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.hero-title{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-1px;
+    margin-top:6px;
+}
+
+.hero-description{
+    color:#9aa9c0;
+    font-size:13px;
+    margin-top:8px;
+    max-width:600px;
+}
+
+.hero-meta{
+    display:flex;
+    gap:9px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
+
+.meta{
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.05);
+    color:#dbe5f5;
+    border-radius:20px;
+    padding:6px 10px;
+    font-size:9px;
+    font-weight:700;
+}
+
+/* SCORE */
+
+.score-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.score-circle{
+    width:158px;
+    height:158px;
+    border-radius:50%;
+    background:conic-gradient(
+        #3b82f6 {{ resume_score }}%,
+        #26344c 0
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 45px rgba(59,130,246,.18);
+}
+
+.score-inner{
+    width:126px;
+    height:126px;
+    border-radius:50%;
+    background:#0b1528;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.score-number{
+    font-size:29px;
+    font-weight:900;
+}
+
+.score-label{
+    color:#8999b2;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:42px;
+}
+
+.stat{
+    background:rgba(255,255,255,.9);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(16,24,40,.08);
+}
+
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:#eef4ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    margin-bottom:13px;
+}
+
+.stat-label{
+    color:#667085;
+    font-size:10px;
+    font-weight:850;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.stat-number{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:-1px;
+    margin-top:3px;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:44px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
+}
+
+.section-title{
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:-.7px;
+}
+
+.section-desc{
+    color:#667085;
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* CAREER */
+
+.career-list{
+    display:grid;
+    gap:12px;
+    margin-top:19px;
+}
+
+.career{
+    background:rgba(255,255,255,.94);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:19px 21px;
+    display:grid;
+    grid-template-columns:44px 1fr 105px;
+    align-items:center;
+    gap:16px;
+    transition:.25s;
+}
+
+.career:hover{
+    transform:translateY(-2px);
+    border-color:#d7e2f7;
+    box-shadow:0 14px 32px rgba(16,24,40,.07);
+}
+
+.rank{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:#f0f3f8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:900;
+    color:#667085;
+}
+
+.career:first-child .rank{
+    background:linear-gradient(135deg,#2563eb,#7048ff);
+    color:white;
+}
+
+.career-name{
+    font-size:14px;
+    font-weight:850;
+}
+
+.best{
+    display:inline-block;
+    margin-left:7px;
+    background:#e9f9f0;
+    color:#07834f;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:8px;
+    font-weight:900;
+    vertical-align:2px;
+}
+
+.progress{
+    height:7px;
+    background:#edf1f7;
+    border-radius:20px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:{{ item.score }}%;
+    background:linear-gradient(90deg,#2563eb,#7048ff);
+    border-radius:20px;
+}
+
+.percentage{
+    text-align:right;
+    font-size:18px;
+    font-weight:900;
+    color:#2563eb;
+}
+
+/* CARDS */
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:20px;
+}
+
+.card{
+    background:rgba(255,255,255,.94);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+    transition:.25s;
+}
+
+.card:hover{
+    box-shadow:0 14px 35px rgba(16,24,40,.06);
+}
+
+.card-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.card-icon{
+    width:40px;
+    height:40px;
+    border-radius:11px;
+    background:#eef4ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+}
+
+.card-title{
+    font-size:16px;
+    font-weight:900;
+}
+
+.card-desc{
+    color:#667085;
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* SKILLS */
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.skill{
+    background:#f1f4f8;
+    color:#344054;
+    border:1px solid #e7ebf1;
+    border-radius:8px;
+    padding:7px 10px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.match{
+    background:#eaf9f1;
+    color:#087443;
+    border-color:#d3f1df;
+}
+
+.missing{
+    background:#fff5eb;
+    color:#c2410c;
+}
+
+/* GAP */
+
+.gap-list{
+    margin-top:19px;
+    display:grid;
+    gap:9px;
+}
+
+.gap-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 13px;
+    background:#fafbfc;
+    border:1px solid #edf0f4;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:750;
+}
+
+.gap-arrow{
+    color:#98a2b3;
+    font-size:15px;
+}
+
+/* CTA */
+
+.cta{
+    margin-top:45px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(112,72,255,.25),transparent 30%),
+        linear-gradient(135deg,#0a1424,#111e38);
+    color:white;
+    border-radius:22px;
+    padding:42px 30px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(7,17,31,.15);
+}
+
+.cta h2{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:-.7px;
+}
+
+.cta p{
+    max-width:600px;
+    color:#a6b4ca;
+    font-size:12px;
+    margin:8px auto 22px;
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-size:11px;
+    font-weight:850;
+    transition:.2s;
+    cursor:pointer;
+    border:none;
+}
+
+.btn-primary{
+    background:white;
+    color:#111827;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,.08);
+    color:white;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.14);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    border-top:1px solid var(--border);
+    padding:28px 20px;
+    color:#98a2b3;
+    font-size:10px;
+}
+
+.footer-brand{
+    color:#344054;
+    font-weight:850;
+}
+
+/* PRINT */
+
+@media print{
+    .navbar{
+        position:static;
+    }
+
+    .btns,
+    .nav-links{
+        display:none;
+    }
+
+    body{
+        background:white;
+    }
+
+    .hero,
+    .cta{
+        box-shadow:none;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:780px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .nav-links a{
+        display:none;
+    }
+
+    .container{
+        padding:40px 16px 60px;
+    }
+
+    h1{
+        font-size:36px;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding:28px;
+    }
+
+    .hero-title{
+        font-size:28px;
+    }
+
+    .score-wrap{
+        margin-top:5px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+    .career{
+        grid-template-columns:40px 1fr;
+    }
+
+    .percentage{
+        grid-column:2;
+        text-align:left;
+    }
+
+    .section-head{
+        display:block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">C</div>
+        Career<span>Decode</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/team/">Our Team</a>
+        <span class="report-pill">Career Intelligence Report</span>
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <span class="badge">
+            Analysis Completed
+        </span>
+
+        <h1>
+            Your <span class="gradient-text">Career Analysis</span>
+        </h1>
+
+        <p class="subtitle">
+            Your resume has been analyzed using CareerDecode's Artificial Intelligence-powered
+            career intelligence pipeline. Review your career alignment,
+            skills, strengths and improvement areas below.
+        </p>
+
+    </div>
+
+
+    <!-- BEST CAREER -->
+    <section class="hero">
+
+        <div>
+
+            <div class="hero-label">
+                ★ Best Career Match
+            </div>
+
+            <div class="hero-title">
+                {{ predicted_career }}
+            </div>
+
+            <p class="hero-description">
+                This career currently shows the strongest alignment
+                with the skills and information identified in your resume.
+            </p>
+
+            <div class="hero-meta">
+                <span class="meta">Artificial Intelligence Career Analysis</span>
+                <span class="meta">Skill Intelligence</span>
+                <span class="meta">Career Recommendation</span>
+            </div>
+
+        </div>
+
+
+        <div class="score-wrap">
+
+            <div class="score-circle">
+
+                <div class="score-inner">
+
+                    <div class="score-number">
+                        {{ resume_score }}%
+                    </div>
+
+                    <div class="score-label">
+                        SKILL SCORE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-icon">✦</div>
+
+            <div class="stat-label">
+                Skills Found
+            </div>
+
+            <div class="stat-number">
+                {{ detected_skills|length }}
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">✓</div>
+
+            <div class="stat-label">
+                Matching Skills
+            </div>
+
+            <div class="stat-number">
+                {{ matched_skills|length }}
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">↗</div>
+
+            <div class="stat-label">
+                Skills to Improve
+            </div>
+
+            <div class="stat-number">
+                {{ missing_skills|length }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CAREER MATCH -->
+    <section class="section">
+
+        <div class="section-head">
+
+            <div>
+                <h2 class="section-title">
+                    Career Match Score
+                </h2>
+
+                <p class="section-desc">
+                    Estimated alignment between your resume and available career paths.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="career-list">
+
+            {% for item in recommendations %}
+
+            <div class="career">
+
+                <div class="rank">
+
+                    {% if forloop.counter < 10 %}
+                        0{{ forloop.counter }}
+                    {% else %}
+                        {{ forloop.counter }}
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <div class="career-name">
+
+                        {{ item.career }}
+
+                        {% if forloop.first %}
+                            <span class="best">
+                                BEST MATCH
+                            </span>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="progress">
+                        <span style="width:{{ item.score }}%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="percentage">
+                    {{ item.score }}%
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="card">
+                No career recommendations available.
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- DETECTED + MATCHING -->
+    <div class="two-column">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-icon">⚡</div>
+
+                <div>
+                    <div class="card-title">
+                        Skills Found
+                    </div>
+
+                    <div class="card-desc">
+                        Technologies and skills identified from your resume.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skills">
+
+                {% for skill in detected_skills %}
+
+                    <span class="skill">
+                        {{ skill }}
+                    </span>
+
+                {% empty %}
+
+                    <span class="skill">
+                        No skills detected
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-icon">✓</div>
+
+                <div>
+                    <div class="card-title">
+                        Matching Skills
+                    </div>
+
+                    <div class="card-desc">
+                        Skills aligned with your recommended career.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skills">
+
+                {% for skill in matched_skills %}
+
+                    <span class="skill match">
+                        ✓ {{ skill }}
+                    </span>
+
+                {% empty %}
+
+                    <span class="skill">
+                        No matching skills found
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILL GAP -->
+    <div class="two-column">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-icon">↗</div>
+
+                <div>
+                    <div class="card-title">
+                        Skills to Improve
+                    </div>
+
+                    <div class="card-desc">
+                        Skills that can strengthen your profile.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="gap-list">
+
+                {% for skill in missing_skills %}
+
+                <div class="gap-item">
+
+                    <span>
+                        {{ skill }}
+                    </span>
+
+                    <span class="gap-arrow">
+                        →
+                    </span>
+
+                </div>
+
+                {% empty %}
+
+                <div class="gap-item">
+                    Your current skills cover the main requirements.
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div class="card-icon">★</div>
+
+                <div>
+                    <div class="card-title">
+                        Recommended Skill Set
+                    </div>
+
+                    <div class="card-desc">
+                        Important skills for your recommended career path.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="skills">
+
+                {% for skill in required_skills %}
+
+                    <span class="skill">
+                        {{ skill }}
+                    </span>
+
+                {% empty %}
+
+                    <span class="skill">
+                        No recommended skills available
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+        <h2>
+            Ready to strengthen your career profile?
+        </h2>
+
+        <p>
+            Use this analysis to understand your current strengths,
+            improve missing skills and align your resume with your
+            target career path.
+        </p>
+
+        <div class="btns">
+
+            <a href="/" class="btn btn-primary">
+                Analyze Another Resume →
+            </a>
+
+            <button onclick="window.print()" class="btn btn-secondary">
+                Print / Save Report
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <span class="footer-brand">CareerDecode</span>
+    · Artificial Intelligence-Based Resume Analysis & Career Domain Prediction System
+    · © 2026
+
+</footer>
+
+</body>
+</html>

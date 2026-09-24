@@ -1,0 +1,3146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | CareerDecode</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f6f8fc;
+    color: #111827;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+::selection {
+    background: #635bff;
+    color: white;
+}
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: #635bff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition:
+        width .25s ease,
+        height .25s ease,
+        background .25s ease;
+}
+
+.cursor-ring {
+    position: fixed;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(99,91,255,.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: .12s ease-out;
+}
+
+body.cursor-hover .cursor {
+    width: 8px;
+    height: 8px;
+    background: white;
+}
+
+body.cursor-hover .cursor-ring {
+    width: 55px;
+    height: 55px;
+    background: rgba(99,91,255,.12);
+    border-color: #635bff;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(255,255,255,.84);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(20,30,50,.06);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.logo-circle {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #a36bff
+        );
+
+    box-shadow:
+        0 8px 20px rgba(99,91,255,.25);
+
+    font-size: 17px;
+}
+
+.logo-text {
+    font-size: 17px;
+    color: #172033;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: #505b70;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: .25s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -9px;
+
+    width: 0;
+    height: 2px;
+
+    background: #635bff;
+
+    transition: .3s ease;
+}
+
+.nav-links a:hover {
+    color: #635bff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links .active {
+    color: #635bff;
+}
+
+.nav-button {
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.nav-button:hover {
+    background: #635bff;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: rgba(99,91,255,.25);
+
+    animation:
+        particleFloat 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+    left: 8%;
+    top: 22%;
+}
+
+.particle:nth-child(2) {
+    left: 18%;
+    top: 65%;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(3) {
+    left: 34%;
+    top: 30%;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+    left: 62%;
+    top: 20%;
+    animation-delay: 1.5s;
+}
+
+.particle:nth-child(5) {
+    left: 78%;
+    top: 50%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(6) {
+    left: 90%;
+    top: 28%;
+    animation-delay: 2.5s;
+}
+
+.particle:nth-child(7) {
+    left: 70%;
+    top: 75%;
+    animation-delay: 4s;
+}
+
+.particle:nth-child(8) {
+    left: 45%;
+    top: 80%;
+    animation-delay: 3.5s;
+}
+
+@keyframes particleFloat {
+
+    0%,100% {
+        transform: translate(0,0);
+        opacity: .35;
+    }
+
+    50% {
+        transform: translate(20px,-25px);
+        opacity: .9;
+    }
+}
+
+
+/* =========================================================
+   ABOUT HERO
+========================================================= */
+
+.about-hero {
+    position: relative;
+
+    min-height: 760px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 90px 7% 100px;
+
+    background:
+        radial-gradient(
+            circle at 5% 25%,
+            rgba(171,122,255,.36),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 94% 30%,
+            rgba(40,207,195,.30),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(255,192,229,.30),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #eef0ff,
+            #f8fbff 50%,
+            #e9ffff
+        );
+}
+
+.about-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.38);
+
+    filter: blur(80px);
+
+    left: 50%;
+    top: 20%;
+
+    transform: translateX(-50%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 1100px;
+
+    text-align: center;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.65);
+
+    border: 1px solid rgba(255,255,255,.85);
+
+    box-shadow:
+        0 8px 25px rgba(60,70,100,.07);
+
+    color: #635bff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    animation: fadeUp .8s ease both;
+}
+
+.hero-label span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #35c99b;
+}
+
+.hero-title {
+    max-width: 900px;
+
+    margin: 25px auto 20px;
+
+    font-size: clamp(45px, 7vw, 78px);
+
+    line-height: 1.02;
+
+    letter-spacing: -3.5px;
+
+    color: #101827;
+
+    animation:
+        fadeUp .9s .1s ease both;
+}
+
+.hero-title span {
+    color: #635bff;
+}
+
+.hero-description {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #5c687b;
+
+    font-size: 15px;
+
+    line-height: 1.85;
+
+    animation:
+        fadeUp 1s .2s ease both;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+
+    animation:
+        fadeUp 1s .3s ease both;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.primary-btn {
+    background: #111827;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #635bff;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(99,91,255,.22);
+}
+
+.secondary-btn {
+    background: rgba(255,255,255,.68);
+
+    border: 1px solid rgba(0,0,0,.06);
+
+    color: #263044;
+}
+
+.secondary-btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   NEW ABOUT HERO VISUAL
+   DIFFERENT FROM HOME PAGE
+========================================================= */
+
+.hero-visual {
+    position: relative;
+
+    width: 100%;
+    max-width: 780px;
+
+    margin: 60px auto 0;
+
+    min-height: 350px;
+
+    animation:
+        fadeUp 1s .4s ease both;
+}
+
+.hero-glow {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 430px;
+    height: 250px;
+
+    transform: translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,91,255,.18),
+            rgba(32,198,167,.18)
+        );
+
+    filter: blur(55px);
+}
+
+
+/* MAIN ABOUT DASHBOARD */
+
+.about-dashboard {
+    position: relative;
+    z-index: 3;
+
+    width: 700px;
+    max-width: 95%;
+
+    margin: auto;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.72);
+
+    border: 1px solid rgba(255,255,255,.95);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 25px 70px rgba(31,41,65,.14);
+
+    transition: .45s ease;
+}
+
+.about-dashboard:hover {
+    transform: translateY(-8px);
+}
+
+
+/* DASHBOARD HEADER */
+
+.dashboard-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid rgba(20,30,50,.07);
+}
+
+.dashboard-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.dashboard-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #a86bff
+        );
+
+    box-shadow:
+        0 8px 20px rgba(99,91,255,.25);
+}
+
+.dashboard-title strong {
+    display: block;
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+.dashboard-title small {
+    display: block;
+
+    text-align: left;
+
+    margin-top: 4px;
+
+    color: #8a94a6;
+
+    font-size: 8px;
+}
+
+.dashboard-status {
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    color: #168d61;
+
+    background: #e3f9ef;
+
+    font-size: 8px;
+
+    font-weight: 800;
+}
+
+
+/* DASHBOARD CONTENT */
+
+.dashboard-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+
+/* ABOUT MINI CARDS */
+
+.about-mini-card {
+    position: relative;
+
+    min-height: 185px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    text-align: left;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    transition: .35s ease;
+}
+
+.about-mini-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-mini-card:nth-child(1) {
+    background:
+        linear-gradient(
+            135deg,
+            #eeeaff,
+            #f8f6ff
+        );
+}
+
+.about-mini-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #e5fbf5,
+            #f5fffc
+        );
+}
+
+.about-mini-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #fff9fc
+        );
+}
+
+.about-mini-card:nth-child(4) {
+    background:
+        linear-gradient(
+            135deg,
+            #fff4df,
+            #fffaf1
+        );
+}
+
+.mini-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    margin-bottom: 16px;
+
+    font-size: 19px;
+}
+
+.about-mini-card:nth-child(1) .mini-icon {
+    background: #dcd7ff;
+    color: #635bff;
+}
+
+.about-mini-card:nth-child(2) .mini-icon {
+    background: #c9f3e5;
+    color: #159c73;
+}
+
+.about-mini-card:nth-child(3) .mini-icon {
+    background: #ffd5e8;
+    color: #df4e8b;
+}
+
+.about-mini-card:nth-child(4) .mini-icon {
+    background: #ffe2b5;
+    color: #d98917;
+}
+
+.about-mini-card h3 {
+    font-size: 14px;
+
+    margin-bottom: 8px;
+
+    color: #182033;
+}
+
+.about-mini-card p {
+    color: #687386;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+}
+
+
+/* BIG CENTER MESSAGE */
+
+.dashboard-message {
+    grid-column: 1 / -1;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #111827,
+            #202b44
+        );
+
+    color: white;
+}
+
+.dashboard-message-text {
+    text-align: left;
+}
+
+.dashboard-message small {
+    color: #a9a3ff;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+}
+
+.dashboard-message h3 {
+    margin-top: 5px;
+
+    font-size: 14px;
+}
+
+.dashboard-message p {
+    margin-top: 5px;
+
+    color: #aeb7c8;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+.dashboard-circle {
+    min-width: 62px;
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #635bff 0deg 280deg,
+            #344057 280deg 360deg
+        );
+
+    position: relative;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.dashboard-circle::after {
+    content: "";
+
+    position: absolute;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #111827;
+}
+
+.dashboard-circle span {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* FLOATING BADGES */
+
+.floating {
+    position: absolute;
+
+    z-index: 5;
+
+    padding: 11px 14px;
+
+    border-radius: 11px;
+
+    background: rgba(255,255,255,.9);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 12px 30px rgba(31,41,55,.12);
+
+    animation:
+        floating 3.5s ease-in-out infinite;
+}
+
+.floating small {
+    display: block;
+
+    color: #8791a2;
+
+    font-size: 7px;
+
+    margin-bottom: 3px;
+}
+
+.floating strong {
+    color: #635bff;
+
+    font-size: 12px;
+}
+
+.floating-left {
+    left: -15px;
+    bottom: 30px;
+}
+
+.floating-right {
+    right: -15px;
+    top: 35px;
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 22px 0;
+
+    background: #111827;
+
+    color: white;
+
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: inline-flex;
+
+    gap: 55px;
+
+    min-width: max-content;
+
+    animation:
+        marquee 25s linear infinite;
+}
+
+.marquee-item {
+    color: #d6dbea;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.marquee-item::before {
+    content: "✦";
+
+    margin-right: 15px;
+
+    color: #8d83ff;
+}
+
+@keyframes marquee {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+.section {
+    padding: 110px 7%;
+}
+
+.section-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #635bff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.section-title {
+    max-width: 750px;
+
+    font-size: clamp(32px,5vw,52px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+    color: #111827;
+}
+
+.section-title span {
+    color: #635bff;
+}
+
+.section-subtitle {
+    max-width: 650px;
+
+    margin-top: 18px;
+
+    color: #657184;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+#our-story {
+    background: white;
+}
+
+.story-layout {
+    display: grid;
+
+    grid-template-columns: 270px 1fr;
+
+    gap: 80px;
+
+    margin-top: 65px;
+}
+
+.story-sidebar {
+    position: sticky;
+
+    top: 110px;
+
+    height: fit-content;
+}
+
+.story-sidebar h3 {
+    font-size: 15px;
+
+    margin-bottom: 15px;
+}
+
+.story-sidebar p {
+    color: #788294;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.story-line {
+    width: 1px;
+
+    height: 70px;
+
+    margin-top: 25px;
+
+    background:
+        linear-gradient(
+            #635bff,
+            transparent
+        );
+}
+
+.story-content {
+    display: grid;
+
+    gap: 28px;
+}
+
+.story-card {
+    padding: 32px;
+
+    border-radius: 20px;
+
+    background: #f7f8fc;
+
+    border: 1px solid #edf0f5;
+
+    transition: .4s ease;
+
+    transform-style: preserve-3d;
+}
+
+.story-card:hover {
+    transform:
+        perspective(900px)
+        rotateX(2deg)
+        rotateY(-2deg)
+        translateY(-5px);
+
+    box-shadow:
+        0 20px 45px rgba(35,48,72,.09);
+}
+
+.story-number {
+    display: inline-flex;
+
+    width: 35px;
+    height: 35px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 10px;
+
+    color: #635bff;
+
+    background: #eae9ff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.story-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 19px;
+}
+
+.story-card p {
+    color: #687386;
+
+    font-size: 13px;
+
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   COUNTERS
+========================================================= */
+
+.counter-section {
+    padding: 75px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #1b2334
+        );
+
+    color: white;
+}
+
+.counter-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 20px;
+}
+
+.counter {
+    padding: 15px;
+
+    text-align: center;
+
+    border-right:
+        1px solid rgba(255,255,255,.08);
+}
+
+.counter:last-child {
+    border-right: none;
+}
+
+.counter-number {
+    font-size: 42px;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+.counter-number span {
+    color: #8e85ff;
+}
+
+.counter p {
+    margin-top: 7px;
+
+    color: #9ba5b7;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DISCOVER
+========================================================= */
+
+.discover {
+    background: #f6f8fc;
+}
+
+.discover-header {
+    text-align: center;
+}
+
+.discover-header .section-title {
+    margin: auto;
+}
+
+.discover-header .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   SIX COLORFUL VALUE BOXES
+========================================================= */
+
+.value-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+
+    margin-top: 55px;
+}
+
+.value-card {
+    position: relative;
+
+    min-height: 270px;
+
+    padding: 30px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,.85);
+
+    transition: .4s ease;
+
+    box-shadow:
+        0 8px 25px rgba(40,50,80,.04);
+}
+
+
+/* DIFFERENT COLOR FOR EACH OF THE 6 BOXES */
+
+.value-card:nth-child(1) {
+    background:
+        linear-gradient(
+            145deg,
+            #eeeaff,
+            #faf9ff
+        );
+}
+
+.value-card:nth-child(2) {
+    background:
+        linear-gradient(
+            145deg,
+            #e3faf4,
+            #f8fffd
+        );
+}
+
+.value-card:nth-child(3) {
+    background:
+        linear-gradient(
+            145deg,
+            #ffeaf4,
+            #fff9fc
+        );
+}
+
+.value-card:nth-child(4) {
+    background:
+        linear-gradient(
+            145deg,
+            #fff1dc,
+            #fffaf3
+        );
+}
+
+.value-card:nth-child(5) {
+    background:
+        linear-gradient(
+            145deg,
+            #e8f1ff,
+            #f8fbff
+        );
+}
+
+.value-card:nth-child(6) {
+    background:
+        linear-gradient(
+            145deg,
+            #f0eaff,
+            #fbf9ff
+        );
+}
+
+
+/* COLORFUL GLOW */
+
+.value-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    right: -65px;
+    top: -65px;
+
+    transition: .5s ease;
+
+    opacity: .75;
+}
+
+.value-card:nth-child(1)::before {
+    background: rgba(99,91,255,.20);
+}
+
+.value-card:nth-child(2)::before {
+    background: rgba(32,198,167,.20);
+}
+
+.value-card:nth-child(3)::before {
+    background: rgba(239,92,157,.20);
+}
+
+.value-card:nth-child(4)::before {
+    background: rgba(245,166,35,.22);
+}
+
+.value-card:nth-child(5)::before {
+    background: rgba(65,137,255,.20);
+}
+
+.value-card:nth-child(6)::before {
+    background: rgba(155,91,255,.20);
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 50px rgba(31,41,55,.11);
+}
+
+.value-card:hover::before {
+    transform: scale(1.7);
+}
+
+
+/* COLORFUL ICONS */
+
+.value-icon {
+    position: relative;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 20px;
+
+    margin-bottom: 23px;
+}
+
+.value-card:nth-child(1) .value-icon {
+    background: #ddd8ff;
+    color: #635bff;
+}
+
+.value-card:nth-child(2) .value-icon {
+    background: #c8f1e4;
+    color: #159b73;
+}
+
+.value-card:nth-child(3) .value-icon {
+    background: #ffd4e7;
+    color: #dc4d89;
+}
+
+.value-card:nth-child(4) .value-icon {
+    background: #ffe0b1;
+    color: #d68715;
+}
+
+.value-card:nth-child(5) .value-icon {
+    background: #d6e7ff;
+    color: #3978df;
+}
+
+.value-card:nth-child(6) .value-icon {
+    background: #e2d4ff;
+    color: #824bdb;
+}
+
+.value-card h3 {
+    position: relative;
+
+    margin-bottom: 11px;
+
+    font-size: 17px;
+}
+
+.value-card p {
+    position: relative;
+
+    color: #707b8e;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.value-link {
+    position: absolute;
+
+    left: 30px;
+    bottom: 25px;
+
+    color: #635bff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline-section {
+    background: white;
+}
+
+.timeline {
+    position: relative;
+
+    max-width: 900px;
+
+    margin: 70px auto 0;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            #635bff,
+            #b6b2ff,
+            transparent
+        );
+
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+
+    width: 50%;
+
+    padding: 0 45px 55px;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: 50%;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    top: 0;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #635bff;
+
+    border: 4px solid white;
+
+    box-shadow:
+        0 0 0 4px rgba(99,91,255,.14);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -8px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -7px;
+}
+
+.timeline-box {
+    padding: 25px;
+
+    border-radius: 17px;
+
+    background: #f7f8fc;
+
+    border: 1px solid #edf0f5;
+
+    transition: .4s ease;
+}
+
+.timeline-box:hover {
+    transform: translateY(-6px);
+
+    background: white;
+
+    box-shadow:
+        0 18px 40px rgba(30,40,65,.08);
+}
+
+.timeline-year {
+    color: #635bff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 9px;
+}
+
+.timeline-box h3 {
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.timeline-box p {
+    color: #707b8d;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+    position: relative;
+
+    padding: 100px 7%;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 50%,
+            rgba(99,91,255,.35),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(32,198,167,.25),
+            transparent 30%
+        ),
+
+        #111827;
+
+    color: white;
+
+    text-align: center;
+}
+
+.cta-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 720px;
+
+    margin: auto;
+}
+
+.cta h2 {
+    font-size: clamp(32px,5vw,52px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+}
+
+.cta p {
+    max-width: 580px;
+
+    margin: 18px auto 28px;
+
+    color: #aeb7c8;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.cta-btn {
+    display: inline-block;
+
+    padding: 14px 23px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #111827;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition: .3s ease;
+}
+
+.cta-btn:hover {
+    background: #635bff;
+
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 28px 7%;
+
+    background: #0c111b;
+
+    color: #7f899b;
+
+    text-align: center;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    body {
+        cursor: auto;
+    }
+
+    .cursor,
+    .cursor-ring {
+        display: none;
+    }
+
+    .navbar {
+        height: auto;
+
+        padding: 16px 5%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 13px 20px;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .about-hero {
+        padding: 70px 5% 80px;
+
+        min-height: auto;
+    }
+
+    .hero-title {
+        font-size: 44px;
+
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-visual {
+        margin-top: 45px;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-message {
+        grid-column: auto;
+    }
+
+    .floating-left {
+        left: 0;
+    }
+
+    .floating-right {
+        right: 0;
+    }
+
+    .section {
+        padding: 75px 5%;
+    }
+
+    .story-layout {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .story-sidebar {
+        position: static;
+    }
+
+    .counter-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .counter {
+        border-right: none;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.08);
+    }
+
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding-left: 40px;
+
+        padding-right: 0;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 3px;
+
+        right: auto;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .hero-title {
+        font-size: 37px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .about-dashboard {
+        padding: 15px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+    }
+
+    .dashboard-status {
+        display: none;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+
+    .about-mini-card {
+        min-height: 150px;
+    }
+
+    .floating {
+        padding: 8px 10px;
+    }
+
+    .floating strong {
+        font-size: 10px;
+    }
+
+    .counter-number {
+        font-size: 32px;
+    }
+
+    .counter p {
+        font-size: 9px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .story-card {
+        padding: 24px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     CUSTOM CURSOR
+========================================================= -->
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+
+        <div class="logo-circle">
+            ✓
+        </div>
+
+        <div class="logo-text">
+            CareerDecode
+        </div>
+
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'about' %}" class="active">
+            About
+        </a>
+
+        <a href="{% url 'analysis' %}">
+            Analysis
+        </a>
+
+        <a href="{% url 'predict' %}">
+            Predict Now
+        </a>
+
+        <a href="{% url 'team' %}">
+            Our Team
+        </a>
+
+        <a href="{% url 'contact' %}">
+            Contact Us
+        </a>
+
+    </div>
+
+    <a href="{% url 'analysis' %}" class="nav-button">
+        Explore
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================================
+     ABOUT HERO
+========================================================= -->
+
+<section class="about-hero">
+
+    <div class="particles">
+
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+    </div>
+
+
+    <div class="hero-container">
+
+        <div class="hero-label">
+            <span></span>
+            ABOUT CAREERDECODE
+        </div>
+
+
+        <h1 class="hero-title">
+
+            Decoding Your Career,
+            <br>
+
+            <span>
+                Building Your Future.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            CareerDecode is an AI-powered career guidance platform
+            created to help students and job seekers understand
+            their skills, discover suitable career opportunities
+            and make better career decisions.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <a href="{% url 'analysis' %}" class="primary-btn">
+                Analyze Your Resume →
+            </a>
+
+            <a href="#our-story" class="secondary-btn">
+                Discover Our Story
+            </a>
+
+        </div>
+
+
+        <!-- =====================================================
+             DIFFERENT HERO VISUAL
+        ===================================================== -->
+
+        <div class="hero-visual">
+
+            <div class="hero-glow"></div>
+
+
+            <div class="about-dashboard">
+
+
+                <!-- HEADER -->
+
+                <div class="dashboard-header">
+
+                    <div class="dashboard-title">
+
+                        <div class="dashboard-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                CareerDecode Intelligence
+                            </strong>
+
+                            <small>
+                                Your career journey, decoded
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="dashboard-status">
+                        ● AI ACTIVE
+                    </span>
+
+                </div>
+
+
+                <!-- DASHBOARD CONTENT -->
+
+                <div class="dashboard-content">
+
+
+                    <div class="about-mini-card">
+
+                        <div class="mini-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Understand
+                        </h3>
+
+                        <p>
+                            Understand your resume,
+                            education, experience and
+                            professional strengths.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-mini-card">
+
+                        <div class="mini-icon">
+                            ◈
+                        </div>
+
+                        <h3>
+                            Discover
+                        </h3>
+
+                        <p>
+                            Discover career possibilities
+                            that connect with your skills
+                            and interests.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-mini-card">
+
+                        <div class="mini-icon">
+                            ◎
+                        </div>
+
+                        <h3>
+                            Improve
+                        </h3>
+
+                        <p>
+                            Identify skill gaps and understand
+                            what you can improve for your
+                            desired career.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-mini-card">
+
+                        <div class="mini-icon">
+                            ↗
+                        </div>
+
+                        <h3>
+                            Grow
+                        </h3>
+
+                        <p>
+                            Build a clearer direction and
+                            take meaningful steps toward
+                            your career goals.
+                        </p>
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <div class="dashboard-message">
+
+                        <div class="dashboard-message-text">
+
+                            <small>
+                                CAREER INSIGHT
+                            </small>
+
+                            <h3>
+                                Your skills tell a story.
+                            </h3>
+
+                            <p>
+                                CareerDecode helps transform
+                                that story into meaningful
+                                career direction.
+                            </p>
+
+                        </div>
+
+
+                        <div class="dashboard-circle">
+
+                            <span>
+                                AI
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FLOATING BADGES -->
+
+            <div class="floating floating-left">
+
+                <small>
+                    Career Direction
+                </small>
+
+                <strong>
+                    AI Powered
+                </strong>
+
+            </div>
+
+
+            <div class="floating floating-right">
+
+                <small>
+                    Skills
+                </small>
+
+                <strong>
+                    Analyzed ✓
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MARQUEE
+========================================================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <div class="marquee-item">
+            AI POWERED
+        </div>
+
+        <div class="marquee-item">
+            RESUME INTELLIGENCE
+        </div>
+
+        <div class="marquee-item">
+            MACHINE LEARNING
+        </div>
+
+        <div class="marquee-item">
+            CAREER GUIDANCE
+        </div>
+
+        <div class="marquee-item">
+            SKILL ANALYSIS
+        </div>
+
+        <div class="marquee-item">
+            SMART RECOMMENDATIONS
+        </div>
+
+        <div class="marquee-item">
+            AI POWERED
+        </div>
+
+        <div class="marquee-item">
+            RESUME INTELLIGENCE
+        </div>
+
+        <div class="marquee-item">
+            MACHINE LEARNING
+        </div>
+
+        <div class="marquee-item">
+            CAREER GUIDANCE
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     OUR STORY
+========================================================= -->
+
+<section class="section" id="our-story">
+
+    <div class="section-container">
+
+
+        <div class="reveal">
+
+            <span class="section-label">
+                OUR STORY
+            </span>
+
+            <h2 class="section-title">
+
+                Turning career
+                <span>
+                    uncertainty
+                </span>
+                into direction.
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                Career decisions can be confusing.
+                CareerDecode was created to make the process
+                easier by combining resume analysis,
+                Machine Learning and career intelligence.
+
+            </p>
+
+        </div>
+
+
+        <div class="story-layout">
+
+
+            <aside class="story-sidebar reveal">
+
+                <h3>
+                    Why CareerDecode?
+                </h3>
+
+                <p>
+                    We believe that every resume contains
+                    valuable information about a person's
+                    potential. Our goal is to decode that
+                    information and turn it into meaningful
+                    career insights.
+                </p>
+
+                <div class="story-line"></div>
+
+            </aside>
+
+
+            <div class="story-content">
+
+
+                <div class="story-card reveal">
+
+                    <div class="story-number">
+                        01
+                    </div>
+
+                    <h3>
+                        The Problem
+                    </h3>
+
+                    <p>
+                        Students and job seekers often struggle
+                        to understand which career domain best
+                        matches their education, skills and
+                        experience. Traditional career guidance
+                        can be generic and difficult to personalize.
+                    </p>
+
+                </div>
+
+
+                <div class="story-card reveal">
+
+                    <div class="story-number">
+                        02
+                    </div>
+
+                    <h3>
+                        The Idea
+                    </h3>
+
+                    <p>
+                        CareerDecode was designed around a simple
+                        idea: use Artificial Intelligence and
+                        Machine Learning to analyze resume data
+                        and provide personalized career insights.
+                    </p>
+
+                </div>
+
+
+                <div class="story-card reveal">
+
+                    <div class="story-number">
+                        03
+                    </div>
+
+                    <h3>
+                        The Vision
+                    </h3>
+
+                    <p>
+                        Our vision is to create a smarter and more
+                        accessible career discovery experience where
+                        people can understand their strengths,
+                        identify skill gaps and confidently explore
+                        their future career paths.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COUNTERS
+========================================================= -->
+
+<section class="counter-section">
+
+    <div class="counter-grid">
+
+
+        <div class="counter reveal">
+
+            <div class="counter-number">
+                <span data-target="100">0</span>+
+            </div>
+
+            <p>
+                Resume Insights
+            </p>
+
+        </div>
+
+
+        <div class="counter reveal">
+
+            <div class="counter-number">
+                <span data-target="25">0</span>+
+            </div>
+
+            <p>
+                Career Domains
+            </p>
+
+        </div>
+
+
+        <div class="counter reveal">
+
+            <div class="counter-number">
+                <span data-target="50">0</span>+
+            </div>
+
+            <p>
+                Skills Analyzed
+            </p>
+
+        </div>
+
+
+        <div class="counter reveal">
+
+            <div class="counter-number">
+                <span data-target="95">0</span>%
+            </div>
+
+            <p>
+                AI Driven Approach
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DISCOVER
+========================================================= -->
+
+<section class="section discover">
+
+    <div class="section-container">
+
+
+        <div class="discover-header reveal">
+
+            <span class="section-label">
+                DISCOVER
+            </span>
+
+            <h2 class="section-title">
+
+                What makes
+                <span>
+                    CareerDecode
+                </span>
+                different?
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                Our platform combines multiple technologies
+                and intelligent features to provide a clearer
+                understanding of career possibilities.
+
+            </p>
+
+        </div>
+
+
+        <div class="value-grid">
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    AI-Powered Analysis
+                </h3>
+
+                <p>
+                    Resume information is processed using
+                    Artificial Intelligence and Machine Learning
+                    techniques to identify useful career signals.
+                </p>
+
+                <div class="value-link">
+                    AI Intelligence →
+                </div>
+
+            </div>
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Skill Intelligence
+                </h3>
+
+                <p>
+                    Important technical and professional skills
+                    can be identified from resume content and
+                    compared with career requirements.
+                </p>
+
+                <div class="value-link">
+                    Understand Skills →
+                </div>
+
+            </div>
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ◎
+                </div>
+
+                <h3>
+                    Career Direction
+                </h3>
+
+                <p>
+                    CareerDecode provides suitable career
+                    recommendations to help users explore
+                    potential professional directions.
+                </p>
+
+                <div class="value-link">
+                    Find Direction →
+                </div>
+
+            </div>
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    Skill Gap Awareness
+                </h3>
+
+                <p>
+                    Discover skills that may be missing and
+                    understand what areas can be improved for
+                    your desired career path.
+                </p>
+
+                <div class="value-link">
+                    Identify Gaps →
+                </div>
+
+            </div>
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ◉
+                </div>
+
+                <h3>
+                    Personalized Insights
+                </h3>
+
+                <p>
+                    Instead of generic suggestions, CareerDecode
+                    focuses on information extracted from the
+                    user's own resume.
+                </p>
+
+                <div class="value-link">
+                    Personalized →
+                </div>
+
+            </div>
+
+
+            <div class="value-card reveal">
+
+                <div class="value-icon">
+                    ⌁
+                </div>
+
+                <h3>
+                    Simple Experience
+                </h3>
+
+                <p>
+                    Complex Machine Learning technology is
+                    presented through a simple and easy-to-use
+                    web interface.
+                </p>
+
+                <div class="value-link">
+                    Easy to Use →
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TIMELINE
+========================================================= -->
+
+<section class="section timeline-section">
+
+    <div class="section-container">
+
+
+        <div class="reveal">
+
+            <span class="section-label">
+                OUR JOURNEY
+            </span>
+
+            <h2 class="section-title">
+
+                From an idea to
+                <span>
+                    CareerDecode.
+                </span>
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                A simple journey focused on making
+                career discovery more intelligent,
+                accessible and useful.
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-box">
+
+                    <div class="timeline-year">
+                        BEGINNING
+                    </div>
+
+                    <h3>
+                        The Idea
+                    </h3>
+
+                    <p>
+                        CareerDecode began with the idea of using
+                        technology to make career decisions easier
+                        for students and job seekers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-box">
+
+                    <div class="timeline-year">
+                        DEVELOPMENT
+                    </div>
+
+                    <h3>
+                        Building the AI System
+                    </h3>
+
+                    <p>
+                        Machine Learning, Natural Language Processing
+                        and resume analysis capabilities were combined
+                        into a single career intelligence platform.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-box">
+
+                    <div class="timeline-year">
+                        INTELLIGENCE
+                    </div>
+
+                    <h3>
+                        Career Prediction
+                    </h3>
+
+                    <p>
+                        The system was developed to analyze resume
+                        content, recognize skills and predict suitable
+                        career domains.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-box">
+
+                    <div class="timeline-year">
+                        TODAY
+                    </div>
+
+                    <h3>
+                        CareerDecode
+                    </h3>
+
+                    <p>
+                        CareerDecode brings resume analysis, skill
+                        intelligence and career recommendations
+                        together in one platform.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta">
+
+    <div class="particles">
+
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+    </div>
+
+
+    <div class="cta-content reveal">
+
+        <h2>
+            Your career story
+            <br>
+            starts with understanding it.
+        </h2>
+
+        <p>
+            Upload your resume, discover your skills,
+            explore career possibilities and take the
+            next step with CareerDecode.
+        </p>
+
+        <a href="{% url 'analysis' %}" class="cta-btn">
+            Start Career Analysis →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    © 2026 CareerDecode. All rights reserved.
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor = document.querySelector(".cursor");
+const cursorRing = document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove", function(e) {
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+    cursorRing.style.left = e.clientX + "px";
+    cursorRing.style.top = e.clientY + "px";
+
+});
+
+
+document.querySelectorAll(
+    "a, .story-card, .value-card, .about-dashboard, .about-mini-card"
+).forEach(function(element) {
+
+    element.addEventListener("mouseenter", function() {
+
+        document.body.classList.add("cursor-hover");
+
+    });
+
+    element.addEventListener("mouseleave", function() {
+
+        document.body.classList.remove("cursor-hover");
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("active");
+
+                    revealObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+revealElements.forEach(function(element) {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   COUNTER ANIMATION
+========================================================= */
+
+const counters =
+    document.querySelectorAll("[data-target]");
+
+let counterStarted = false;
+
+function startCounters() {
+
+    if (counterStarted) return;
+
+    counterStarted = true;
+
+    counters.forEach(function(counter) {
+
+        const target =
+            parseInt(counter.dataset.target);
+
+        let current = 0;
+
+        const increment =
+            Math.max(1, Math.ceil(target / 60));
+
+        const updateCounter = function() {
+
+            current += increment;
+
+            if (current >= target) {
+
+                current = target;
+
+                counter.textContent = current;
+
+                return;
+
+            }
+
+            counter.textContent = current;
+
+            requestAnimationFrame(updateCounter);
+
+        };
+
+        updateCounter();
+
+    });
+
+}
+
+
+const counterSection =
+    document.querySelector(".counter-section");
+
+
+const counterObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    startCounters();
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.3
+        }
+
+    );
+
+
+counterObserver.observe(counterSection);
+
+
+/* =========================================================
+   PARALLAX
+========================================================= */
+
+window.addEventListener("scroll", function() {
+
+    const hero =
+        document.querySelector(".about-hero");
+
+    const visual =
+        document.querySelector(".hero-visual");
+
+    if (!hero || !visual) return;
+
+    const scroll =
+        window.scrollY;
+
+    if (scroll < hero.offsetHeight) {
+
+        visual.style.transform =
+            "translateY(" + (scroll * 0.08) + "px)";
+
+    }
+
+});
+
+
+/* =========================================================
+   MOUSE PARTICLES
+========================================================= */
+
+document.addEventListener("mousemove", function(e) {
+
+    const particles =
+        document.querySelectorAll(".particle");
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 15;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 15;
+
+    particles.forEach(function(particle, index) {
+
+        particle.style.marginLeft =
+            (x * ((index % 3) + 1)) + "px";
+
+        particle.style.marginTop =
+            (y * ((index % 2) + 1)) + "px";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

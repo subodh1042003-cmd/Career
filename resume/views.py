@@ -1,23 +1,20 @@
 import os
 import re
-import joblib
 import pymupdf
 
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.core.files.storage import FileSystemStorage
+
 from .models import TeamMember
+
 from ml_model.skills import extract_skills
 from ml_model.career_recommendation import recommend_careers
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-MODEL_PATH = os.path.join(BASE_DIR, "ml_model", "career_model.pkl")
-VECTORIZER_PATH = os.path.join(BASE_DIR, "ml_model", "tfidf_vectorizer.pkl")
-
-model = joblib.load(MODEL_PATH)
-vectorizer = joblib.load(VECTORIZER_PATH)
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))
+)
 
 
 CAREER_SKILLS = {
@@ -100,7 +97,10 @@ def smart_career_prediction(resume_text):
 
         for skill in skills:
             if contains_skill(resume_text, skill):
-                score += 3 if len(skill.split()) >= 2 else 1
+                if len(skill.split()) >= 2:
+                    score += 3
+                else:
+                    score += 1
 
         scores[career] = score
 
@@ -110,8 +110,13 @@ def smart_career_prediction(resume_text):
     if best_score >= 2:
         return best_career
 
-    resume_vector = vectorizer.transform([resume_text])
-    return model.predict(resume_vector)[0]
+    import ml_model.career_recommendation as career_model
+
+    career_model.load_models()
+
+    resume_vector = career_model.vectorizer.transform([resume_text])
+
+    return career_model.model.predict(resume_vector)[0]
 
 
 def calculate_skill_match(career, resume_text):
@@ -127,7 +132,9 @@ def calculate_skill_match(career, resume_text):
             missing_skills.append(skill)
 
     if required_skills:
-        percentage = (len(matched_skills) / len(required_skills)) * 100
+        percentage = (
+            len(matched_skills) / len(required_skills)
+        ) * 100
     else:
         percentage = 0
 
@@ -145,6 +152,7 @@ def home(request):
 
 @ensure_csrf_cookie
 def analyze_resume(request):
+
     if request.method != "POST":
         return render(request, "predict.html")
 
@@ -171,12 +179,15 @@ def analyze_resume(request):
     os.makedirs(media_path, exist_ok=True)
 
     fs = FileSystemStorage(location=media_path)
+
     saved_filename = fs.save(filename, uploaded_file)
+
     file_path = fs.path(saved_filename)
 
     resume_text = ""
 
     if extension == ".pdf":
+
         try:
             document = pymupdf.open(file_path)
 
@@ -186,6 +197,7 @@ def analyze_resume(request):
             document.close()
 
         except Exception as e:
+
             return render(
                 request,
                 "predict.html",
@@ -193,7 +205,9 @@ def analyze_resume(request):
             )
 
     elif extension == ".docx":
+
         try:
+
             from docx import Document
 
             document = Document(file_path)
@@ -202,6 +216,7 @@ def analyze_resume(request):
                 resume_text += paragraph.text + "\n"
 
         except Exception as e:
+
             return render(
                 request,
                 "predict.html",
@@ -211,6 +226,7 @@ def analyze_resume(request):
     resume_text = resume_text.strip()
 
     if not resume_text:
+
         return render(
             request,
             "predict.html",
@@ -234,14 +250,11 @@ def analyze_resume(request):
     context = {
         "predicted_career": predicted_career,
         "detected_skills": detected_skills,
-
         "required_skills": skill_gap["required_skills"],
         "matched_skills": skill_gap["matched_skills"],
         "missing_skills": skill_gap["missing_skills"],
-
         "skill_match": skill_gap["match_percentage"],
         "resume_score": skill_gap["match_percentage"],
-
         "recommendations": recommendations,
         "resume_text": resume_text,
     }
@@ -277,4 +290,3 @@ def predict(request):
 
 def contact(request):
     return render(request, "contact.html")
-

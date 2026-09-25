@@ -23,17 +23,6 @@ VECTORIZER_PATH = os.path.join(
 
 
 # ==========================================
-# LOAD MODEL
-# ==========================================
-
-model = joblib.load(MODEL_PATH)
-
-vectorizer = joblib.load(
-    VECTORIZER_PATH
-)
-
-
-# ==========================================
 # 12 CAREER PATHS
 # ==========================================
 
@@ -86,10 +75,42 @@ EXTRA_CAREER_KEYWORDS = {
 
 
 # ==========================================
+# LAZY LOAD MODEL
+# ==========================================
+
+model = None
+vectorizer = None
+
+
+def load_models():
+
+    global model
+    global vectorizer
+
+    if model is None:
+
+        model = joblib.load(
+            MODEL_PATH
+        )
+
+    if vectorizer is None:
+
+        vectorizer = joblib.load(
+            VECTORIZER_PATH
+        )
+
+
+# ==========================================
 # RECOMMEND CAREERS
 # ==========================================
 
 def recommend_careers(resume_text):
+
+    # Load ML files only when prediction
+    # is actually requested
+
+    load_models()
+
 
     # ======================================
     # TF-IDF
@@ -119,6 +140,7 @@ def recommend_careers(resume_text):
         )
 
         if len(decision_scores.shape) > 1:
+
             decision_scores = decision_scores[0]
 
         classes = model.classes_
@@ -170,6 +192,7 @@ def recommend_careers(resume_text):
         for keyword in keywords:
 
             if keyword in text:
+
                 matches += 1
 
 
